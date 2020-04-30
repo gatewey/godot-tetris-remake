@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://BoundingBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/singleMinos.png" type="Texture" id=2]
+[ext_resource path="res://Tetriminos/Minos.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="Minos" type="Sprite"]
+texture = ExtResource( 2 )
+hframes = 7
+script = ExtResource( 3 )
+
+[node name="BoundingBox" parent="." instance=ExtResource( 1 )]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="BoundingBox" index="0"]
+visible = false
+shape = SubResource( 1 )
+
+[editable path="BoundingBox"]

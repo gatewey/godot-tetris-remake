@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Tetriminos/Minos.tscn" type="PackedScene" id=1]
+
+[node name="tTetrimino" type="Position2D"]
+
+[node name="Minos" parent="." instance=ExtResource( 1 )]
+position = Vector2( -16, 0 )
+frame = 6
+
+[node name="Minos2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -16 )
+frame = 6
+
+[node name="Minos3" parent="." instance=ExtResource( 1 )]
+frame = 6
+
+[node name="Minos4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 16, 0 )
+frame = 6
