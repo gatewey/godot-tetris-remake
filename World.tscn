@@ -10,6 +10,9 @@
 [ext_resource path="res://Tetriminos/zTetrimino.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Playfield" parent="." instance=ExtResource( 2 )]
 position = Vector2( -3, -41 )
@@ -68,22 +71,29 @@ __meta__ = {
 }
 
 [node name="iTetrimino" parent="." instance=ExtResource( 1 )]
-position = Vector2( 80, -16 )
+position = Vector2( 80, 176 )
 
 [node name="jTetrimino" parent="." instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 277, 219 )
 
 [node name="elTetrimino" parent="." instance=ExtResource( 7 )]
-position = Vector2( 194, 303 )
+visible = false
+position = Vector2( 256, 312 )
 
 [node name="oTetrimino" parent="." instance=ExtResource( 4 )]
+visible = false
 position = Vector2( 246, 259 )
 
 [node name="tTetrimino" parent="." instance=ExtResource( 3 )]
-position = Vector2( 310, 296 )
+visible = false
+position = Vector2( 509, 243 )
+rotation = 1.5708
 
 [node name="sTetrimino" parent="." instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 312, 166 )
 
 [node name="zTetrimino" parent="." instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 195, 206 )

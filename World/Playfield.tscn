@@ -1,34 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Sprites/playfield.png" type="Texture" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2, 171 )
+[node name="Playfield" type="Area2D"]
+collision_layer = 16
+collision_mask = 5
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 83, 2 )
-
-[node name="Playfield" type="Sprite"]
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
 
-[node name="LeftArea" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="LeftCollisionShape" type="CollisionShape2D" parent="LeftArea"]
-position = Vector2( 2, 193 )
-shape = SubResource( 1 )
-
-[node name="RightArea" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="RightCollisionShape" type="CollisionShape2D" parent="RightArea"]
-position = Vector2( 164, 193 )
-shape = SubResource( 1 )
-
-[node name="BottomArea" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="BottomCollisionShape" type="CollisionShape2D" parent="BottomArea"]
-position = Vector2( 83, 362 )
-shape = SubResource( 2 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, 364, 0, 8, 3, 8, 3, 361, 163, 361, 163, 8, 166, 8, 166, 364 )

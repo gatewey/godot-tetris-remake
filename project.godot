@@ -82,6 +82,9 @@ soft_drop={
 
 2d_physics/layer_1="FreeMinos"
 2d_physics/layer_2="LockedMinos"
+2d_physics/layer_3="FreeTetrimino"
+2d_physics/layer_4="LockedTetrimino"
+2d_physics/layer_5="Playfield"
 
 [rendering]
 
