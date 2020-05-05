@@ -13,16 +13,12 @@ func _ready():
 	real_minos = get_real_minos()
 	
 	ghost_mino_rays = get_ghost_mino_rays()
-	initialize_ghost_minos()
+	update_children_transform()
 	
-	global_position = real_tetrimino.global_position
+	global_transform = real_tetrimino.global_transform
 	
 	# REALLY IMPORTANT
 	real_tetrimino.connect("has_transformed", self, "update_transform")
-
-
-func _physics_process(_delta):
-	rotation_degrees = real_tetrimino.rotation_degrees
 
 
 # Was having issues with the way I was doing this. Just resized manually
@@ -44,13 +40,11 @@ func get_ghost_mino_rays():
 	return temp
 
 
-func initialize_ghost_minos():
-	for x in range(4):
-		ghost_minos[x].position = real_minos[x].position
-
-
 func update_transform():
-	global_position = real_tetrimino.global_position
+	global_transform = real_tetrimino.global_transform
+	update_children_rotation()
+	
+	force_children_ray_updates()
 	
 	var temp
 	var closest_collision = 1000 # Arbitrary large number
@@ -62,3 +56,16 @@ func update_transform():
 			closest_collision = temp
 	
 	global_position.y += closest_collision
+
+
+func update_children_transform():
+	for x in range(4):
+		ghost_minos[x].transform = real_minos[x].transform
+
+func update_children_rotation():
+	for current_minos in ghost_minos:
+		current_minos.rotation_degrees = -1 * rotation_degrees
+
+func force_children_ray_updates():
+	for current_ray in ghost_mino_rays:
+		current_ray.force_raycast_update()

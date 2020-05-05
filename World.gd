@@ -15,7 +15,7 @@ onready var spawn_position = $SpawnPosition
 
 
 func _ready():
-	active_tetrimino = preloaded_i_tetrimino.instance()
+	active_tetrimino = preloaded_j_tetrimino.instance()
 	ghost_tetrimino = preloaded_ghost_tetrimino.instance()
 	
 	call_deferred("spawn_active_tetrimino")
