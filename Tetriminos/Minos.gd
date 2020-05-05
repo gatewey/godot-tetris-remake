@@ -1,4 +1,4 @@
-extends Sprite
+extends Area2D
 
 var colliding_left = false
 var colliding_right = false
@@ -8,12 +8,12 @@ onready var tetrimino = get_parent()
 onready var collision_ray = $CollisionRay
 
 
-func _process(_delta):
+func _process(delta):
 	# Corrects the sprite's rotation when the parent Tetrimino is rotated
 	rotation_degrees = -1 * tetrimino.rotation_degrees
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	do_collision_check()
 
 
