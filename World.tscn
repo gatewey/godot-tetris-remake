@@ -8,6 +8,7 @@
 [ext_resource path="res://Tetriminos/jTetrimino.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Tetriminos/elTetrimino.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Tetriminos/zTetrimino.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Minos/LockedMinos.tscn" type="PackedScene" id=3]
 
 [node name="World" type="Node2D"]
 __meta__ = {
