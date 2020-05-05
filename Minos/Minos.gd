@@ -1,4 +1,4 @@
-extends Area2D
+extends Sprite
 
 var colliding_left = false
 var colliding_right = false

@@ -1,7 +1,10 @@
 extends Position2D
 
-onready var real_tetrimino = get_parent()
+var real_tetrimino = null
+var real_minos = []
+var ghost_mino_rays = []
 
+onready var ghost_minos = get_children()
 
 
 func _ready():
