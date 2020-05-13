@@ -2,6 +2,7 @@ extends Position2D
 
 signal has_transformed
 
+
 enum {
 	SPAWN,
 	LEFT,

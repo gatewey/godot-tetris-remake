@@ -28,7 +28,7 @@ func do_collision_check():
 		colliding_left = true
 	else:
 		colliding_left = false
-	
+
 	# ===========================================
 	#               Right
 	# ===========================================
@@ -38,7 +38,7 @@ func do_collision_check():
 		colliding_right = true
 	else:
 		colliding_right = false
-	
+
 	# ===========================================
 	#               Down
 	# ===========================================
