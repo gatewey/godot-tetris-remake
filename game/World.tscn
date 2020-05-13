@@ -109,5 +109,5 @@ position = Vector2( 0, -16 )
 [node name="LockedMinos4" parent="LockedMinos" instance=ExtResource( 3 )]
 position = Vector2( 16, 0 )
 
-[node name="Position2D" type="Position2D" parent="."]
+[node name="TestingPosition" type="Position2D" parent="."]
 position = Vector2( 8, 312 )

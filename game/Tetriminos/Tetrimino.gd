@@ -38,7 +38,7 @@ func input_check():
 			emit_signal("has_transformed")
 		
 	if Input.is_action_just_pressed("hard_drop"):
-		pass # Need to translate, and set self as inactive
+		do_hard_drop()
 		
 	if Input.is_action_just_pressed("soft_drop"):
 		if !is_colliding_down():
@@ -76,6 +76,14 @@ func is_colliding_down():
 			return true
 	
 	return false
+
+
+func do_hard_drop():
+	var ghost_tetrimino = get_parent().ghost_tetrimino
+	
+	global_position = ghost_tetrimino.global_position
+	
+	# Lock the minos
 
 
 func rotate(direction): # If type is o then dont run tests

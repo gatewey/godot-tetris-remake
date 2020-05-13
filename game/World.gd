@@ -32,7 +32,7 @@ func _ready():
 	active_tetrimino = preloaded_i_tetrimino.instance()
 	active_tetrimino_type = "i"
 	
-	#ghost_tetrimino = preloaded_ghost_tetrimino.instance()
+	ghost_tetrimino = preloaded_ghost_tetrimino.instance()
 	rotation_tester_tetrimino = preloaded_rotatation_tester_tetrimino.instance()
 	
 	do_initial_spawn()
@@ -42,8 +42,9 @@ func do_initial_spawn():
 	add_child(active_tetrimino)
 	active_tetrimino.global_position = i_spawn.global_position
 	
-	#add_child(ghost_tetrimino)
+	add_child(ghost_tetrimino)
 	# GhostTetrimino.gd controls how it is positioned
 	
 	add_child(rotation_tester_tetrimino)
+	
 	emit_signal("new_spawn")
