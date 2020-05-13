@@ -2,24 +2,28 @@ extends Position2D
 
 signal has_transformed
 
+
+enum {
+	SPAWN,
+	LEFT,
+	RIGHT,
+	DOUBLE
+}
+
 const step_size = 16 # Represents the length of a mino in pixels
 
-# Represents Tetrimino's ability to move.
-#     If a single Mino is affected by any movement restriction the respective
-# direction is blocked for the Tetrimino
-var can_move_left = true
-var can_move_right = true
-var can_move_down = true
-# ==============================================================================
+var current_rotation_state = SPAWN
 
+onready var type = get_parent().active_tetrimino_type
 onready var minos = self.get_children()
+onready var playfield = get_parent().playfield
 
 
 func _ready():
 	rotation_degrees = 0
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	input_check()
 
 
@@ -35,7 +39,7 @@ func input_check():
 			emit_signal("has_transformed")
 		
 	if Input.is_action_just_pressed("hard_drop"):
-		pass
+		do_hard_drop()
 		
 	if Input.is_action_just_pressed("soft_drop"):
 		if !is_colliding_down():
@@ -43,11 +47,11 @@ func input_check():
 			emit_signal("has_transformed")
 		
 	if Input.is_action_just_pressed("rotate_clockwise"):
-		rotate_clockwise()
+		rotate("clockwise")
 		emit_signal("has_transformed")
 		
 	if Input.is_action_just_pressed("rotate_counter_clockwise"):
-		rotate_counter_clockwise()
+		rotate("counter_clockwise")
 		emit_signal("has_transformed")
 
 
@@ -75,15 +79,69 @@ func is_colliding_down():
 	return false
 
 
-func rotate_clockwise():
-	if rotation_degrees == 360:
-		rotation_degrees = 0
+func do_hard_drop():
+	var ghost_tetrimino = get_parent().ghost_tetrimino
 	
-	rotation_degrees += 90
+	global_position = ghost_tetrimino.global_position
+	
+	# Lock the minos
 
 
-func rotate_counter_clockwise():
-	if rotation_degrees == -360:
-		rotation_degrees = 0
+func rotate(direction): # If type is o then dont run tests
+	match direction:
+		"clockwise":
+			var next_rotation_state = get_next_rotation_state(direction)
+			var test_rotation = rotation_degrees + 90
+			
+			if rotation_degrees == 360:
+				test_rotation = 0 + 90
+			
+			
+			if playfield.is_valid_rotation(current_rotation_state, next_rotation_state, test_rotation):
+				global_position += (playfield.safe_translation * step_size)
+				
+				rotation_degrees = test_rotation
+				
+				current_rotation_state = next_rotation_state
 		
-	rotation_degrees += -90
+		"counter_clockwise":
+			var next_rotation_state = get_next_rotation_state(direction)
+			var test_rotation = rotation_degrees - 90
+			
+			if rotation_degrees == -360:
+				test_rotation = 0 - 90
+			
+			if playfield.is_valid_rotation(current_rotation_state, next_rotation_state, test_rotation):
+				global_position += (playfield.safe_translation * step_size)
+				
+				rotation_degrees = test_rotation
+				
+				current_rotation_state = next_rotation_state
+
+
+func get_next_rotation_state(rotation):
+	match current_rotation_state:
+		SPAWN:
+			match rotation:
+				"clockwise":
+					return RIGHT
+				"counter_clockwise":
+					return LEFT
+		LEFT:
+			match rotation:
+				"clockwise":
+					return SPAWN
+				"counter_clockwise":
+					return DOUBLE
+		RIGHT:
+			match rotation:
+				"clockwise":
+					return DOUBLE
+				"counter_clockwise":
+					return SPAWN
+		DOUBLE:
+			match rotation:
+				"clockwise":
+					return LEFT
+				"counter_clockwise":
+					return RIGHT

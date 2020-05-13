@@ -1,14 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Sprites/playfield.png" type="Texture" id=1]
+[ext_resource path="res://World/Playfield.gd" type="Script" id=2]
 
 [node name="Playfield" type="Area2D"]
 collision_layer = 16
 collision_mask = 5
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 0, 364, 0, 8, 3, 8, 3, 361, 163, 361, 163, 8, 166, 8, 166, 364 )
+visible = false
+polygon = PoolVector2Array( -9, 373, -9, 8, 3, 8, 3, 361, 163, 361, 163, 8, 175, 8, 175, 373 )
+
