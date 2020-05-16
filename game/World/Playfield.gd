@@ -157,7 +157,6 @@ func update_active_tetrimino_data():
 		var array_position = convert_to_array_index(current_mino.global_position)
 		
 		mino_array_positions.append(array_position)
-		print(array_position)
 	
 	# Draw the new active tetrimino
 	for current_position in mino_array_positions:

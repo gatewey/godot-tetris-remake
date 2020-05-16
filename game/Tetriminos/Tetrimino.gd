@@ -1,7 +1,8 @@
 extends Position2D
 
 signal has_transformed
-
+signal start_lockdown
+signal force_lockdown
 
 enum {
 	SPAWN,
@@ -12,7 +13,8 @@ enum {
 
 const step_size = 16 # Represents the length of a mino in pixels
 
-var current_rotation_state = SPAWN
+var current_rotation_state = null
+var has_collided_down = false
 
 onready var type = get_parent().active_tetrimino_type
 onready var minos = self.get_children()
@@ -21,10 +23,13 @@ onready var playfield = get_parent().playfield
 
 func _ready():
 	rotation_degrees = 0
+	current_rotation_state = SPAWN
+	has_collided_down = false
 
 
 func _physics_process(_delta):
 	input_check()
+	lock_check()
 
 
 func input_check():
@@ -43,6 +48,9 @@ func input_check():
 		
 	if Input.is_action_just_pressed("soft_drop"):
 		if !is_colliding_down():
+			if has_collided_down:
+				emit_signal("start_lockdown")
+			
 			position.y += step_size
 			emit_signal("has_transformed")
 		
@@ -53,6 +61,12 @@ func input_check():
 	if Input.is_action_just_pressed("rotate_counter_clockwise"):
 		rotate("counter_clockwise")
 		emit_signal("has_transformed")
+
+
+func lock_check():
+	if is_colliding_down() and !has_collided_down:
+		has_collided_down = true
+		emit_signal("start_lockdown")
 
 
 func is_colliding_left():
@@ -84,7 +98,7 @@ func do_hard_drop():
 	
 	global_position = ghost_tetrimino.global_position
 	
-	# Lock the minos
+	emit_signal("force_lockdown")
 
 
 func rotate(direction): # If type is o then dont run tests
