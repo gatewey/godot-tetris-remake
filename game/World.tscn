@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://World/Playfield.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Minos/LockedMinos.tscn" type="PackedScene" id=3]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,10 +9,13 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="LockDownTimer" type="Timer" parent="."]
+
 [node name="Playfield" parent="." instance=ExtResource( 2 )]
 position = Vector2( -3, -41 )
 
 [node name="ReferrenceNumbers" type="Control" parent="Playfield"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -96,18 +98,54 @@ visible = false
 position = Vector2( 72, -8 )
 
 [node name="LockedMinos" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Row1" type="Node2D" parent="LockedMinos"]
+
+[node name="Row2" type="Node2D" parent="LockedMinos"]
+
+[node name="Row3" type="Node2D" parent="LockedMinos"]
+
+[node name="Row4" type="Node2D" parent="LockedMinos"]
+
+[node name="Row5" type="Node2D" parent="LockedMinos"]
+
+[node name="Row6" type="Node2D" parent="LockedMinos"]
+
+[node name="Row7" type="Node2D" parent="LockedMinos"]
+
+[node name="Row8" type="Node2D" parent="LockedMinos"]
+
+[node name="Row9" type="Node2D" parent="LockedMinos"]
+
+[node name="Row10" type="Node2D" parent="LockedMinos"]
+
+[node name="Row11" type="Node2D" parent="LockedMinos"]
+
+[node name="Row12" type="Node2D" parent="LockedMinos"]
+
+[node name="Row13" type="Node2D" parent="LockedMinos"]
+
+[node name="Row14" type="Node2D" parent="LockedMinos"]
+
+[node name="Row15" type="Node2D" parent="LockedMinos"]
+
+[node name="Row16" type="Node2D" parent="LockedMinos"]
+
+[node name="Row17" type="Node2D" parent="LockedMinos"]
+
+[node name="Row18" type="Node2D" parent="LockedMinos"]
+
+[node name="Row19" type="Node2D" parent="LockedMinos"]
+
+[node name="Row20" type="Node2D" parent="LockedMinos"]
+
+[node name="Row21" type="Node2D" parent="LockedMinos"]
+
+[node name="Row22" type="Node2D" parent="LockedMinos"]
+
+[node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 24, 312 )
-
-[node name="LockedMinos" parent="LockedMinos" instance=ExtResource( 3 )]
-position = Vector2( -16, 0 )
-
-[node name="LockedMinos2" parent="LockedMinos" instance=ExtResource( 3 )]
-position = Vector2( 0, -16 )
-
-[node name="LockedMinos3" parent="LockedMinos" instance=ExtResource( 3 )]
-
-[node name="LockedMinos4" parent="LockedMinos" instance=ExtResource( 3 )]
-position = Vector2( 16, 0 )
-
-[node name="TestingPosition" type="Position2D" parent="."]
-position = Vector2( 8, 312 )
+[connection signal="timeout" from="LockDownTimer" to="." method="_on_LockDownTimer_timeout"]
