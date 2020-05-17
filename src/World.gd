@@ -156,12 +156,6 @@ func remove_active_tetrimino():
 	rotation_tester_tetrimino.queue_free()
 	ghost_tetrimino.queue_free()
 	active_tetrimino.queue_free()
-	
-	var active_tetrimino_type = ""
-	var active_tetrimino = null
-	var active_minos = null
-	var ghost_tetrimino = null
-	var rotation_tester_tetrimino = null
 
 
 func start_lockdown_timer():
