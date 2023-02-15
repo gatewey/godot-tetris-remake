@@ -148,4 +148,5 @@ __meta__ = {
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 24, 312 )
+
 [connection signal="timeout" from="LockDownTimer" to="." method="_on_LockDownTimer_timeout"]

@@ -22,9 +22,6 @@ position = Vector2( 16, -16 )
 frame = 4
 
 [editable path="Minos"]
-
 [editable path="Minos2"]
-
 [editable path="Minos3"]
-
 [editable path="Minos4"]

@@ -3,6 +3,7 @@ extends Position2D
 var active_tetrimino = null
 var active_minos = []
 var children_minos_rays = []
+var minos = []
 
 onready var children_minos = get_children()
 
@@ -16,11 +17,10 @@ func _ready():
 	update_children_transform()
 	
 	global_transform = active_tetrimino.global_transform
-	
-	# REALLY IMPORTANT
-	active_tetrimino.connect("has_transformed", self, "update_transform")
-	get_parent().connect("new_spawn", self, "update_transform")
 
+
+func _physics_process(_delta):
+	update_transform()
 
 # Was having issues with the way I was doing this. Just resized manually
 func get_active_minos():
@@ -31,7 +31,6 @@ func get_active_minos():
 	
 	return temp
 
-
 func get_children_minos_rays():
 	var temp = []
 	
@@ -40,11 +39,9 @@ func get_children_minos_rays():
 	
 	return temp
 
-
 func set_children_color():
 	for current_mino in children_minos:
 		current_mino.set_mino_color(active_tetrimino.type)
-
 
 func update_transform():
 	global_transform = active_tetrimino.global_transform
@@ -62,7 +59,6 @@ func update_transform():
 			closest_collision = temp
 	
 	global_position.y += closest_collision
-
 
 func update_children_transform():
 	for x in range(4):
