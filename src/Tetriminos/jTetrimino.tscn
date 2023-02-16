@@ -3,28 +3,25 @@
 [ext_resource path="res://Minos/FreeMinos.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tetriminos/Tetrimino.gd" type="Script" id=2]
 
-[node name="zTetrimino" type="Position2D"]
+[node name="jTetrimino" type="Position2D"]
 script = ExtResource( 2 )
 
 [node name="Minos" parent="." instance=ExtResource( 1 )]
 position = Vector2( -16, -16 )
-frame = 5
+frame = 1
 
 [node name="Minos2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -16 )
-frame = 5
+position = Vector2( -16, 0 )
+frame = 1
 
 [node name="Minos3" parent="." instance=ExtResource( 1 )]
-frame = 5
+frame = 1
 
 [node name="Minos4" parent="." instance=ExtResource( 1 )]
 position = Vector2( 16, 0 )
-frame = 5
+frame = 1
 
 [editable path="Minos"]
-
 [editable path="Minos2"]
-
 [editable path="Minos3"]
-
 [editable path="Minos4"]

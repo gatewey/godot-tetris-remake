@@ -1,2 +1,0 @@
-extends Position2D
-

@@ -45,6 +45,8 @@ func input_check():
 		
 	if Input.is_action_just_pressed("hard_drop"):
 		do_hard_drop()
+		emit_signal("has_transformed")
+		emit_signal("force_lockdown")
 		
 	if Input.is_action_just_pressed("soft_drop"):
 		if !is_colliding_down():
@@ -97,8 +99,6 @@ func do_hard_drop():
 	var ghost_tetrimino = get_parent().ghost_tetrimino
 	
 	global_position = ghost_tetrimino.global_position
-	
-	emit_signal("force_lockdown")
 
 
 func rotate(direction): # If type is o then dont run tests
